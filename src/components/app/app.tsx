@@ -18,7 +18,6 @@ import { useEffect } from 'react';
 import store, { useDispatch, useSelector } from '../../services/store';
 import { checkUserAuth } from '../../services/auth/actions';
 import { OnlyAuth, OnlyUnAuth } from '../protected-route/protected-route';
-import { getIngredients } from '../../services/ingredients/actions';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -26,7 +25,6 @@ const App = () => {
 
   useEffect(() => {
     dispatch(checkUserAuth());
-    dispatch(getIngredients());
   }, []);
 
   const location = useLocation();
@@ -62,6 +60,10 @@ const App = () => {
         />
         <Route path='/ingredients/:id' element={<IngredientDetails />} />
         <Route path='/feed/:number' element={<OrderInfo />} />
+        <Route
+          path='/profile/orders/:number'
+          element={<OnlyAuth component={<OrderInfo />} />}
+        />
         <Route path='*' element={<NotFound404 />} />
       </Routes>
 
@@ -81,6 +83,18 @@ const App = () => {
               <Modal title='Детали заказа' onClose={modalClose}>
                 <OrderInfo />
               </Modal>
+            }
+          />
+          <Route
+            path='/profile/orders/:number'
+            element={
+              <OnlyAuth
+                component={
+                  <Modal title='Детали заказа' onClose={modalClose}>
+                    <OrderInfo />
+                  </Modal>
+                }
+              />
             }
           />
         </Routes>

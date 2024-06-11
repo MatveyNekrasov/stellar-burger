@@ -18,17 +18,7 @@ export const ingredientsSlice = createSlice({
   reducers: {},
   selectors: {
     getIngredientsList: (state) => state.ingredients,
-    getIngredientsListById: (state, id: string) =>
-      state.ingredients.filter((ingredient) => ingredient._id === id),
-    getIngredientsListByIds: (state, idList: string[]) =>
-      state.ingredients.filter((ingredient) => idList.includes(ingredient._id)),
-    getLoading: (state) => state.isLoading,
-    getBuns: (state) =>
-      state.ingredients.filter((ingredient) => ingredient.type === 'bun'),
-    getMains: (state) =>
-      state.ingredients.filter((ingredient) => ingredient.type === 'main'),
-    getSauces: (state) =>
-      state.ingredients.filter((ingredient) => ingredient.type === 'sauce')
+    getLoading: (state) => state.isLoading
   },
   extraReducers: (builder) => {
     builder
@@ -42,12 +32,4 @@ export const ingredientsSlice = createSlice({
   }
 });
 
-export const {
-  getLoading,
-  getIngredientsList,
-  getBuns,
-  getMains,
-  getSauces,
-  getIngredientsListById,
-  getIngredientsListByIds
-} = ingredientsSlice.selectors;
+export const { getLoading, getIngredientsList } = ingredientsSlice.selectors;

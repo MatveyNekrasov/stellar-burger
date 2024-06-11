@@ -1,6 +1,7 @@
 import {
   TLoginData,
   TRegisterData,
+  getOrdersApi,
   getUserApi,
   loginUserApi,
   logoutApi,
@@ -61,5 +62,13 @@ export const update = createAsyncThunk(
   async (data: Partial<TRegisterData>) => {
     const res = await updateUserApi(data);
     return res.user;
+  }
+);
+
+export const getUserOrders = createAsyncThunk(
+  'auth/getUserOrders',
+  async () => {
+    const res = await getOrdersApi();
+    return res;
   }
 );

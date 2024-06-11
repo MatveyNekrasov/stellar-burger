@@ -1,19 +1,21 @@
 import { PayloadAction, SerializedError, createSlice } from '@reduxjs/toolkit';
-import { TUser } from '@utils-types';
-import { login, logout, register, update } from './actions';
+import { TOrder, TUser } from '@utils-types';
+import { getUserOrders, login, logout, register, update } from './actions';
 
 interface TAuthState {
   user: TUser | null;
   isAuthChecked: boolean;
   isLoading: boolean;
   error: SerializedError | undefined;
+  userOrders: TOrder[] | null;
 }
 
 const initialState: TAuthState = {
   user: null,
   isAuthChecked: false,
   isLoading: false,
-  error: undefined
+  error: undefined,
+  userOrders: null
 };
 
 export const authSlice = createSlice({
@@ -34,12 +36,14 @@ export const authSlice = createSlice({
     getUser: (state) => state.user,
     getAuthChecked: (state) => state.isAuthChecked,
     getLoading: (state) => state.isLoading,
-    getErrorMessage: (state) => state.error
+    getErrorMessage: (state) => state.error,
+    getUserOrdersList: (state) => state.userOrders
   },
   extraReducers: (builder) => {
     builder
       .addCase(login.pending, (state) => {
         state.isLoading = true;
+        state.error = undefined;
       })
       .addCase(login.rejected, (state, action) => {
         state.error = action.error;
@@ -52,6 +56,7 @@ export const authSlice = createSlice({
       })
       .addCase(logout.pending, (state) => {
         state.isLoading = true;
+        state.error = undefined;
       })
       .addCase(logout.fulfilled, (state) => {
         state.user = null;
@@ -59,6 +64,7 @@ export const authSlice = createSlice({
       })
       .addCase(register.pending, (state) => {
         state.isLoading = true;
+        state.error = undefined;
       })
       .addCase(register.rejected, (state, action) => {
         state.isLoading = false;
@@ -70,6 +76,7 @@ export const authSlice = createSlice({
       })
       .addCase(update.pending, (state) => {
         state.isLoading = true;
+        state.error = undefined;
       })
       .addCase(update.rejected, (state, action) => {
         state.isLoading = false;
@@ -79,10 +86,22 @@ export const authSlice = createSlice({
         state.user = action.payload;
         state.isAuthChecked = true;
         state.isLoading = false;
+      })
+      .addCase(getUserOrders.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getUserOrders.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.userOrders = action.payload;
       });
   }
 });
 
 export const { setAuthChecked, setUser, setLoading } = authSlice.actions;
-export const { getAuthChecked, getUser, getLoading, getErrorMessage } =
-  authSlice.selectors;
+export const {
+  getAuthChecked,
+  getUser,
+  getLoading,
+  getErrorMessage,
+  getUserOrdersList
+} = authSlice.selectors;
