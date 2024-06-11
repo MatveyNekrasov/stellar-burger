@@ -1,9 +1,4 @@
-import {
-  Draft,
-  PayloadAction,
-  SerializedError,
-  createSlice
-} from '@reduxjs/toolkit';
+import { PayloadAction, SerializedError, createSlice } from '@reduxjs/toolkit';
 import { TUser } from '@utils-types';
 import { login, logout, register, update } from './actions';
 

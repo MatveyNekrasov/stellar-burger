@@ -1,7 +1,6 @@
 import {
   TLoginData,
   TRegisterData,
-  forgotPasswordApi,
   getUserApi,
   loginUserApi,
   logoutApi,
