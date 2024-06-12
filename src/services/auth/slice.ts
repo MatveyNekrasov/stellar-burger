@@ -7,7 +7,7 @@ interface TAuthState {
   isAuthChecked: boolean;
   isLoading: boolean;
   error: SerializedError | undefined;
-  userOrders: TOrder[] | null;
+  userOrders: TOrder[];
 }
 
 const initialState: TAuthState = {
@@ -15,7 +15,7 @@ const initialState: TAuthState = {
   isAuthChecked: false,
   isLoading: false,
   error: undefined,
-  userOrders: null
+  userOrders: []
 };
 
 export const authSlice = createSlice({

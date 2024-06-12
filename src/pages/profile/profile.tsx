@@ -65,6 +65,4 @@ export const Profile: FC = () => {
       updateUserError={errorMessage?.message}
     />
   );
-
-  return null;
 };

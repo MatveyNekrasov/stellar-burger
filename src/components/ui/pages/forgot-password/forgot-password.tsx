@@ -18,6 +18,7 @@ export const ForgotPasswordUI: FC<PageUIProps> = ({
         className={`pb-15 ${styles.form}`}
         name='login'
         onSubmit={handleSubmit}
+        autoComplete=''
       >
         <div className='pb-6'>
           <Input
@@ -29,6 +30,7 @@ export const ForgotPasswordUI: FC<PageUIProps> = ({
             error={false}
             errorText=''
             size='default'
+            autoComplete='email'
           />
         </div>
         <div className={`pb-6 ${styles.button}`}>

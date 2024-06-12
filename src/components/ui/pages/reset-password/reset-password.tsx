@@ -23,12 +23,14 @@ export const ResetPasswordUI: FC<ResetPasswordUIProps> = ({
         className={`pb-15 ${styles.form}`}
         name='login'
         onSubmit={handleSubmit}
+        autoComplete=''
       >
         <div className='pb-6'>
           <PasswordInput
             onChange={(e) => setPassword(e.target.value)}
             value={password}
             name='password'
+            autoComplete='new-password'
           />
         </div>
         <div className='pb-6'>

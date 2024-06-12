@@ -8,7 +8,7 @@ import { getUserOrdersList } from '../../services/auth/slice';
 export const ProfileOrders: FC = () => {
   const dispatch = useDispatch();
   /** TODO: взять переменную из стора */
-  const orders: TOrder[] = useSelector(getUserOrdersList)!;
+  const orders: TOrder[] = useSelector(getUserOrdersList);
 
   useEffect(() => {
     dispatch(getUserOrders());
