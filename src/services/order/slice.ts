@@ -7,7 +7,7 @@ interface TOrderState {
   orderModalData: TOrder | null;
 }
 
-const initialState: TOrderState = {
+export const initialState: TOrderState = {
   orderRequest: false,
   orderModalData: null
 };
@@ -31,7 +31,10 @@ export const orderSlice = createSlice({
       })
       .addCase(createOrder.fulfilled, (state, action) => {
         state.orderRequest = false;
-        state.orderModalData = action.payload.order;
+        state.orderModalData = action.payload;
+      })
+      .addCase(createOrder.rejected, (state) => {
+        state.orderRequest = false;
       });
   }
 });

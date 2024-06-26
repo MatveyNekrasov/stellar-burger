@@ -1,16 +1,16 @@
-import { PayloadAction, SerializedError, createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { TOrder, TUser } from '@utils-types';
 import { getUserOrders, login, logout, register, update } from './actions';
 
-interface TAuthState {
+export interface TAuthState {
   user: TUser | null;
   isAuthChecked: boolean;
   isLoading: boolean;
-  error: SerializedError | undefined;
+  error: string | undefined;
   userOrders: TOrder[];
 }
 
-const initialState: TAuthState = {
+export const initialState: TAuthState = {
   user: null,
   isAuthChecked: false,
   isLoading: false,
@@ -46,7 +46,7 @@ export const authSlice = createSlice({
         state.error = undefined;
       })
       .addCase(login.rejected, (state, action) => {
-        state.error = action.error;
+        state.error = action.error.message;
         state.isLoading = false;
       })
       .addCase(login.fulfilled, (state, action) => {
@@ -68,7 +68,7 @@ export const authSlice = createSlice({
       })
       .addCase(register.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.error;
+        state.error = action.error.message;
       })
       .addCase(register.fulfilled, (state, action) => {
         state.user = action.payload;
@@ -80,7 +80,7 @@ export const authSlice = createSlice({
       })
       .addCase(update.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.error;
+        state.error = action.error.message;
       })
       .addCase(update.fulfilled, (state, action) => {
         state.user = action.payload;
