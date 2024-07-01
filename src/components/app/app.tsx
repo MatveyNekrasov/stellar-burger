@@ -15,10 +15,9 @@ import styles from './app.module.css';
 import { AppHeader, IngredientDetails, Modal, OrderInfo } from '@components';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import store, { useDispatch, useSelector } from '../../services/store';
+import { useDispatch } from '../../services/store';
 import { checkUserAuth } from '../../services/auth/actions';
 import { OnlyAuth, OnlyUnAuth } from '../protected-route/protected-route';
-import { getFeed } from '../../services/feed/actions';
 import { getIngredients } from '../../services/ingredients/actions';
 
 const App = () => {

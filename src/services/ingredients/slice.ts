@@ -7,7 +7,7 @@ interface TIngredientsState {
   isLoading: boolean;
 }
 
-const initialState: TIngredientsState = {
+export const initialState: TIngredientsState = {
   ingredients: [],
   isLoading: false
 };
@@ -28,6 +28,9 @@ export const ingredientsSlice = createSlice({
       .addCase(getIngredients.fulfilled, (state, action) => {
         state.isLoading = false;
         state.ingredients = action.payload;
+      })
+      .addCase(getIngredients.rejected, (state) => {
+        state.isLoading = false;
       });
   }
 });

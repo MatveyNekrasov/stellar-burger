@@ -37,6 +37,7 @@ export const LoginUI: FC<LoginUIProps> = ({
               errorText=''
               size='default'
               autoComplete='email'
+              data-cy='email-input'
             />
           </div>
           <div className='pb-6'>
@@ -45,10 +46,16 @@ export const LoginUI: FC<LoginUIProps> = ({
               value={password}
               name='password'
               autoComplete='current-password'
+              data-cy='password-input'
             />
           </div>
           <div className={`pb-6 ${styles.button}`}>
-            <Button type='primary' size='medium' htmlType='submit'>
+            <Button
+              type='primary'
+              size='medium'
+              htmlType='submit'
+              data-cy='login-button'
+            >
               Войти
             </Button>
           </div>
